@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Calculadora de Salários</title>
+
+        <!-- bulma -->
+        <link rel="stylesheet" th:href="@{/webjars/bulma/0.7.5/css/bulma.min.css}" />
+        <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.10.1/css/all.css}" />
+
+    </head>
+    <body>
+
+        <div class="container is-fluid">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    <a class="navbar-item" th:href="@{/}" href="#">
+                <span class="icon">
+                    <i class="fas fa-home fa-2x"></i>
+                </span>
+                    </a>
+                </div>
+
+                <div class="navbar-menu">
+                    <div class="navbar-start" >
+                        <a class="navbar-item" th:href="@{/calculator/new}" href="#">
+                            <button class="button is-primary">Novo Calculo</button>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            <div layout:fragment="content">content falso</div>
+        </div>
+    </body>
+</html>
