@@ -30,14 +30,14 @@ data class Worker (
         val dependents: Int = 0,
 
         @Column(name = "SALARY")
-        val salary: Double = 0.0,
+        var salary: Double = 0.0,
 
         @Column(name = "INSS")
-        val inss: Double = 0.0,
+        var inss: Double = 0.0,
 
         @Column(name = "TAX")
-        val tax: Double = 0.0,
+        var tax: Double = 0.0,
 
         @Column(name = "FINAL_SALARY")
-        val salaryFinal: Double = 0.0
+        var salaryFinal: Double = 0.0
 )
