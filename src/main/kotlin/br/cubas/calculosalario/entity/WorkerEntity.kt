@@ -1,6 +1,9 @@
-package br.cubas.calculosalario.entities
+package br.cubas.calculosalario.entity
 
 import javax.persistence.*
+import javax.validation.constraints.Min
+import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 /**
  * @author s2it_csilva
@@ -10,16 +13,20 @@ import javax.persistence.*
  *
  */
 @Entity
-data class Worker (
+data class WorkerEntity (
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "ID")
         var id: Long? = null,
 
+        @NotNull
+        @Size(min = 2, max = 100)
         @Column(name = "NAME", length = 100, nullable = false)
         val name: String?,
 
+        @NotNull
+        @Min(1)
         @Column(name = "TIME_TO_WORK")
         val timeToWork: Int = 0,
 

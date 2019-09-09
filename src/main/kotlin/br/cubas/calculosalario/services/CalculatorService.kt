@@ -1,6 +1,7 @@
 package br.cubas.calculosalario.services
 
-import br.cubas.calculosalario.entities.Worker
+import br.cubas.calculosalario.entity.WorkerEntity
+import br.cubas.calculosalario.repository.WorkerRepository
 import org.springframework.stereotype.Service
 
 /**
@@ -11,22 +12,30 @@ import org.springframework.stereotype.Service
  *
  */
 @Service
-class CalculatorService {
+class CalculatorService(
+        private val workerRepository: WorkerRepository
+) {
 
-    fun process(worker:Worker): Worker{
+    fun getWorkers(): List<WorkerEntity>{
+        return workerRepository.findAll();
+    }
+
+    fun process(worker:WorkerEntity): WorkerEntity{
         worker.salary = normalSalary(worker)
         worker.inss = inss(worker)
         worker.tax = ir(worker)
         worker.salaryFinal = liquidSalary(worker)
 
+        workerRepository.save(worker)
+
         return worker
     }
 
-    fun normalSalary(worker:Worker):Double {
+    fun normalSalary(worker:WorkerEntity):Double {
         return worker.timeToWork * worker.salaryHour + (50 * worker.dependents)
     }
 
-    private fun inss(worker:Worker):Double {
+    private fun inss(worker:WorkerEntity):Double {
         if(worker.salary <= 1000.0){
             return worker.salary * 8.5/100
         }else{
@@ -34,7 +43,7 @@ class CalculatorService {
         }
     }
 
-    private fun ir(worker:Worker):Double {
+    private fun ir(worker:WorkerEntity):Double {
         if(worker.salary <= 500.0){
             return 0.0
         }else if(worker.salary > 500 && worker.salary <= 1000.0){
@@ -44,7 +53,7 @@ class CalculatorService {
         }
     }
 
-    private fun liquidSalary(worker:Worker):Double {
+    private fun liquidSalary(worker:WorkerEntity):Double {
         return worker.salary - worker.inss - worker.tax
     }
 

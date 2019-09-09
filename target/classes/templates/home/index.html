@@ -13,29 +13,14 @@
                 <th>Salário Líquido</th>
             </tr>
         </thead>
-        <tr>
-            <td>dsds</td>
-            <td>sdsd</td>
-            <td>dsds</td>
-            <td>sdsd</td>
-            <td>dsds</td>
-        </tr>
-        <tr>
-            <td>dsds</td>
-            <td>sdsd</td>
-            <td>dsds</td>
-            <td>sdsd</td>
-            <td>dsds</td>
-        </tr>
-        <tr>
-            <td>dsds</td>
-            <td>sdsd</td>
-            <td>dsds</td>
-            <td>sdsd</td>
-            <td>dsds</td>
+        <tr th:each="worker : ${workers}">
+            <td th:text="${worker.name}">Jose da silva</td>
+            <td th:text="${#numbers.formatCurrency(worker.salary)}">23,48</td>
+            <td th:text="${#numbers.formatCurrency(worker.inss)}">5,3</td>
+            <td th:text="${#numbers.formatCurrency(worker.tax)}">2,9</td>
+            <td th:text="${#numbers.formatCurrency(worker.salaryFinal)}">20,89</td>
         </tr>
     </table>
-
 </div>
 </body>
 </html>
