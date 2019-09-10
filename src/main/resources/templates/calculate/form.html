@@ -4,7 +4,7 @@
 <body>
    <div layout:fragment="content" class="column is-three-fifths ">
 
-      <form id="livroForm" th:action="@{/calculator/process}" method="post" action="#" >
+      <form id="livroForm" th:action="@{/calculator/process}" method="post" th:object="${worker}" action="#" > >
          <div class="field">
             <label class="label">Nome</label>
             <div class="control">
@@ -33,7 +33,7 @@
                <div class="field">
                   <label class="label">Salário Hora</label>
                   <div class="control">
-                     <input class="input" type="text" name="salaryHour" placeholder="R$">
+                     <input class="input" type="text" id="salaryHour" name="salaryHour" placeholder="R$">
                   </div>
                </div>
             </div>

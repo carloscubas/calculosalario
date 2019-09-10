@@ -23,18 +23,20 @@ data class WorkerEntity (
         @NotNull
         @Size(min = 2, max = 100)
         @Column(name = "NAME", length = 100, nullable = false)
-        val name: String?,
+        val name: String,
 
         @NotNull
         @Min(1)
         @Column(name = "TIME_TO_WORK")
-        val timeToWork: Int = 0,
+        var timeToWork: Int = 0,
 
+        @NotNull
         @Column(name = "SALARY_HOUR")
-        val salaryHour: Double = 0.0,
+        var salaryHour: Double = 0.0,
 
+        @NotNull
         @Column(name = "DEPENDENTS")
-        val dependents: Int = 0,
+        var dependents: Int = 0,
 
         @Column(name = "SALARY")
         var salary: Double = 0.0,
