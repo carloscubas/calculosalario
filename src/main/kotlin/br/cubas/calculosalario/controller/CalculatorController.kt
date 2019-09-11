@@ -33,7 +33,7 @@ class CalculatorController (
         if (bindingResult.hasErrors()) {
             return  ModelAndView("calculate/form", "worker", worker);
         }
-        worker?.let { calculatorService.process(it) }
+        calculatorService.process(worker)
         return ModelAndView("redirect:/")
     }
 }
