@@ -1,5 +1,6 @@
 package br.cubas.calculosalario.services
 
+import br.cubas.calculosalario.converter.WorkerConverter
 import br.cubas.calculosalario.entity.WorkerEntity
 import br.cubas.calculosalario.repository.WorkerRepository
 import br.cubas.calculosalario.vo.WorkerVO
@@ -22,16 +23,11 @@ class CalculatorService(
     }
 
     fun process(workerVO: WorkerVO): WorkerEntity{
-        var worker = WorkerEntity(null,
-                workerVO.name,
-                workerVO.timeToWork,
-                workerVO.salaryHour,
-                workerVO.dependents,
+        var worker = WorkerConverter.toEntity(workerVO,
                 normalSalary(workerVO),
                 inss(workerVO),
                 ir(workerVO),
-                liquidSalary(workerVO)
-                )
+                liquidSalary(workerVO))
         workerRepository.save(worker)
         return worker
     }
@@ -60,5 +56,9 @@ class CalculatorService(
 
     private fun liquidSalary(workerVO:WorkerVO):Double {
         return normalSalary(workerVO) - inss(workerVO) - ir(workerVO)
+    }
+
+    fun delete(id: Long) {
+        workerRepository.deleteById(id)
     }
 }

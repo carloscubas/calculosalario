@@ -13,7 +13,8 @@ import javax.validation.constraints.Size
  *
  */
 @Entity
-data class WorkerEntity (
+@Table(name = "Worquer")
+data class WorkerEntity(
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +24,7 @@ data class WorkerEntity (
         @NotNull
         @Size(min = 2, max = 100)
         @Column(name = "NAME", length = 100, nullable = false)
-        val name: String,
+        val name: String?,
 
         @NotNull
         @Min(1)
