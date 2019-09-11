@@ -19,7 +19,7 @@ class CalculatorService(
 ) {
 
     fun getWorkers(): List<WorkerEntity>{
-        return workerRepository.findAll();
+        return workerRepository.findAll()
     }
 
     fun process(workerVO: WorkerVO): WorkerEntity{
@@ -37,20 +37,18 @@ class CalculatorService(
     }
 
     private fun inss(workerVO:WorkerVO):Double {
-        if(normalSalary(workerVO) <= 1000.0){
-            return normalSalary(workerVO) * 8.5/100
-        }else{
-            return normalSalary(workerVO) * 9/100
-        }
+        return if(normalSalary(workerVO) <= 1000.0){
+            normalSalary(workerVO) * 8.5/100
+        }else normalSalary(workerVO) * 9/100
     }
 
     private fun ir(workerVO:WorkerVO):Double {
-        if(normalSalary(workerVO) <= 500.0){
-            return 0.0
+        return if(normalSalary(workerVO) <= 500.0){
+            0.0
         }else if(normalSalary(workerVO) > 500 && normalSalary(workerVO) <= 1000.0){
-            return normalSalary(workerVO) * 5/100
+            normalSalary(workerVO) * 5/100
         }else{
-            return normalSalary(workerVO) * 7/100
+            normalSalary(workerVO) * 7/100
         }
     }
 

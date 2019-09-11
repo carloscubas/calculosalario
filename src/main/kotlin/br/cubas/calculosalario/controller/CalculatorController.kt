@@ -31,7 +31,7 @@ class CalculatorController (
     @PostMapping("/process")
     fun process(@Valid worker: WorkerVO, bindingResult: BindingResult): ModelAndView {
         if (bindingResult.hasErrors()) {
-            return  ModelAndView("calculate/form", "worker", worker);
+            return  ModelAndView("calculate/form", "worker", worker)
         }
         calculatorService.process(worker)
         return ModelAndView("redirect:/")
