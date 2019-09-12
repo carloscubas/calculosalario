@@ -3,11 +3,9 @@ package br.cubas.calculosalario.controller
 import br.cubas.calculosalario.services.CalculatorService
 import br.cubas.calculosalario.vo.WorkerVO
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 import org.springframework.validation.BindingResult
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.servlet.ModelAndView
 import javax.validation.Valid
 
@@ -29,9 +27,9 @@ class CalculatorController (
     }
 
     @PostMapping("/process")
-    fun process(@Valid worker: WorkerVO, bindingResult: BindingResult): ModelAndView {
+    fun process(@Valid @ModelAttribute("worker") worker: WorkerVO, bindingResult: BindingResult, model: Model): ModelAndView {
         if (bindingResult.hasErrors()) {
-            return  ModelAndView("calculate/form", "worker", worker)
+            return  ModelAndView("calculate/form")
         }
         calculatorService.process(worker)
         return ModelAndView("redirect:/")

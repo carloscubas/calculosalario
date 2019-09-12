@@ -3,14 +3,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
 <body>
    <div layout:fragment="content" class="column is-three-fifths ">
-      <form id="livroForm" th:action="@{/calculator/process}" method="post" th:object="${worker}" action="#" > >
+      <form id="livroForm" th:action="@{/calculator/process}" method="post" th:object="${worker}" action="#" >
          <div class="columns">
             <div class="column">
                <div class="field">
                   <label class="label">Nome</label>
                   <div class="control">
                      <input class="input" type="text" th:field="*{name}" id="name" placeholder="e.g Alex Smith" maxlength="100" >
-                     <span th:errors="*{name}">Name Error</span>
+                     <span class="tag is-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Warning</span>
                   </div>
                </div>
             </div>
@@ -29,6 +29,7 @@
                   <label class="label">Horas trabalhadas</label>
                   <div class="control">
                      <input class="input" type="number" th:field="*{timeToWork}" id="timeToWork" min="0" >
+                     <span class="tag is-warning" th:if="${#fields.hasErrors('timeToWork')}" th:errors="*{timeToWork}">Name Error</span>
                   </div>
                </div>
             </div>
@@ -38,6 +39,7 @@
                   <label class="label">Salário Hora</label>
                   <div class="control">
                      <input class="input" type="text" th:field="*{salaryHour}" id="salaryHour" placeholder="R$">
+                     <span class="tag is-warning" th:if="${#fields.hasErrors('salaryHour')}" th:errors="*{salaryHour}">Name Error</span>
                   </div>
                </div>
             </div>
