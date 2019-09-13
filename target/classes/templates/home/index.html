@@ -12,6 +12,7 @@
                 <th>Desconto IR</th>
                 <th>Salário Líquido</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tr th:each="worker : ${workers}">
@@ -20,6 +21,7 @@
             <td th:text="${#numbers.formatCurrency(worker.inss)}">5,3</td>
             <td th:text="${#numbers.formatCurrency(worker.tax)}">2,9</td>
             <td th:text="${#numbers.formatCurrency(worker.salaryFinal)}">20,89</td>
+            <td><a class="icon" href="#" th:href="@{'/calculator/update/'+${worker.id}}"><i class="fa fa-edit"></i></a></td>
             <td><a class="icon" href="#" th:href="@{'/calculator/delete/'+${worker.id}}"><i class="fa fa-trash"></i></a></td>
         </tr>
     </table>

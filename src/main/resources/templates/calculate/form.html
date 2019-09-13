@@ -4,6 +4,7 @@
 <body>
    <div layout:fragment="content" class="column is-three-fifths ">
       <form id="livroForm" th:action="@{/calculator/process}" method="post" th:object="${worker}" action="#" >
+         <input type="hidden" th:field="*{id}" />
          <div class="columns">
             <div class="column">
                <div class="field">

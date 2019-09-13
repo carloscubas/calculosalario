@@ -13,7 +13,9 @@ import javax.validation.constraints.Size
  */
 data class WorkerVO (
 
-        @field:NotEmpty @Size(min = 2, max = 100) var name: String,
+        var id: Long?,
+
+        @field:NotEmpty @Size(min = 2, max = 100) var name: String?,
 
         @field:Min(1) var timeToWork: Int = 0,
 

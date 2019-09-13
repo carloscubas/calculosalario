@@ -13,8 +13,7 @@ import br.cubas.calculosalario.vo.WorkerVO
 object WorkerConverter {
 
     fun toEntity(workerVO: WorkerVO, salary: Double, inss:Double, ir:Double, liquidSalary:Double): WorkerEntity {
-        return WorkerEntity(
-            null,
+        return WorkerEntity(workerVO.id,
             workerVO.name,
             workerVO.timeToWork,
             workerVO.salaryHour,
@@ -23,6 +22,16 @@ object WorkerConverter {
             inss,
             ir,
             liquidSalary
+        )
+    }
+
+    fun toVo(workerEntity:  WorkerEntity): WorkerVO {
+        return WorkerVO(
+                workerEntity.id,
+                workerEntity.name,
+                workerEntity.timeToWork,
+                workerEntity.salaryHour,
+                workerEntity.dependents
         )
     }
 }

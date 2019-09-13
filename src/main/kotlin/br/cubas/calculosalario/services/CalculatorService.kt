@@ -59,4 +59,8 @@ class CalculatorService(
     fun delete(id: Long) {
         workerRepository.deleteById(id)
     }
+
+    fun getWorker(id: Long): WorkerVO {
+        return WorkerConverter.toVo(workerRepository.findById(id).get())
+    }
 }

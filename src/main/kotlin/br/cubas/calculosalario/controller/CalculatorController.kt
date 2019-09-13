@@ -17,13 +17,18 @@ class CalculatorController (
 
     @GetMapping("/new")
     fun index(): ModelAndView {
-        return ModelAndView("calculate/form", "worker", WorkerVO("", 0, 0.0, 0))
+        return ModelAndView("calculate/form", "worker", WorkerVO(null, null, 0, 0.0, 0))
     }
 
     @GetMapping("/delete/{id}")
     fun delete(@PathVariable("id") id: Long): ModelAndView {
         calculatorService.delete(id)
         return ModelAndView("redirect:/")
+    }
+
+    @GetMapping("/update/{id}")
+    fun update(@PathVariable("id") id: Long): ModelAndView {
+        return  ModelAndView("calculate/form", "worker", calculatorService.getWorker(id))
     }
 
     @PostMapping("/process")
